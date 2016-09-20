@@ -26,7 +26,8 @@ public class TestOra1 {
 		//java.lang.NoClassDefFoundError: oracle/xml/binxml/BinXMLMetadataProvider (je potreba xmlparserv2.jar {ORACLE_HOME}/oracle/produce/{VERSION_NUMBER}/lib/xmlparserrv2.jar)
 
 		
-		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@azaix2b:1522:TEST152", "customer", "customer");
+		//Connection con=DriverManager.getConnection("jdbc:oracle:thin:@azaix2b:1522:TEST152", "customer", "customer");
+		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:49161:xe", "system", "oracle");
 
 		//zakladni typy
 		System.out.println("zacatek p1");
