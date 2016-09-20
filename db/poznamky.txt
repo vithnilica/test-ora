@@ -13,9 +13,11 @@ typecode
 'COLLECTION' - tabulka
 'OBJECT' - objekt, pro jeho prvky se musi kouknout jeste do all_type_attrs
 
-select * from all_type_attrs a where a.type_name='VH_TEST_T1' order by a.attr_no
+--pro tabulku koukat sem
+select * from user_coll_types ct where ct.type_name='VH_TEST_A1' and ct.coll_type='TABLE' 
 
-select * from all_type_attrs a where a.type_name='VH_TEST_A1' order by a.attr_no
+--pro objekt koukat sem
+select * from all_type_attrs a where a.type_name='VH_TEST_T1' order by a.attr_no
 
 select * from all_type_attrs a where a.type_name='VH_TEST_T2' order by a.attr_no
 
@@ -40,7 +42,7 @@ argument kdyz ARGUMENT_NAME is not null and DATA_LEVEL = 0
 ignorovat kdyz DATA_LEVEL > 0
 
 DATA_TYPE
-'OPAQUE/XMLTYPE' xmltype
+'OPAQUE/XMLTYPE' nebo 'UNDEFINED' typename='XMLTYPE' xmltype
 'OBJECT' a 'TABLE'  - typ dotahnout pres all_types
 'NUMBER'
 'VARCHAR2'
@@ -53,4 +55,5 @@ DATA_TYPE
 https://docs.oracle.com/cd/A97335_02/apps.102/a83724/basic3.htm
 
 select DATA_TYPE, count(*) from all_arguments aa group by DATA_TYPE
+
 
