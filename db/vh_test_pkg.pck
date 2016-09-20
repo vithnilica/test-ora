@@ -5,6 +5,8 @@ type t1 is table of varchar2(4000) index by pls_integer;
 
 procedure p1(n number, s varchar, d date);
 procedure p2(x1 xmltype);
+procedure p2a(x1 in out xmltype);
+function p2b(x1 xmltype) return xmltype;
 procedure p3(x1 vh_test_t1);
 procedure p4(x1 vh_test_a1);
 procedure p5(x1 clob);
@@ -28,6 +30,17 @@ end;
 procedure p2(x1 xmltype)is
 begin
   vh_loguj('vh_test_pkg.p2 x1:'||x1.getStringVal());
+end;
+
+procedure p2a(x1 in out xmltype)is
+begin
+  vh_loguj('vh_test_pkg.p2 x1:'||x1.getStringVal());
+end;
+
+function p2b(x1 xmltype) return xmltype is
+begin
+  vh_loguj('vh_test_pkg.p2 x1:'||x1.getStringVal());
+  return x1;
 end;
 
 procedure p3(x1 vh_test_t1)is
