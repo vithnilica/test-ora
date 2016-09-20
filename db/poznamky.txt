@@ -1,0 +1,56 @@
+select * from user_types t where t.type_name='VH_TEST_T1'
+
+select * from user_types t where t.type_name='VH_TEST_A1'
+
+select * from user_types t where t.type_name='VH_TEST_T2'
+
+select * from all_types t where t.type_name='XMLTYPE'
+
+select t.typecode from user_types t group by t.typecode
+
+
+typecode
+'COLLECTION' - tabulka
+'OBJECT' - objekt, pro jeho prvky se musi kouknout jeste do all_type_attrs
+
+select * from all_type_attrs a where a.type_name='VH_TEST_T1' order by a.attr_no
+
+select * from all_type_attrs a where a.type_name='VH_TEST_A1' order by a.attr_no
+
+select * from all_type_attrs a where a.type_name='VH_TEST_T2' order by a.attr_no
+
+select * from user_dependencies d where d.name='VH_TEST_T1' 
+REFERENCED_OWNER=SYS
+REFERENCED_NAME=STANDARD
+REFERENCED_TYPE=PACKAGE
+
+--typy ktere jsou pouzite v baliku
+select * from user_dependencies d where d.name='VH_TEST_PKG' and d.type='PACKAGE' and d.referenced_type='TYPE'
+
+select * from all_procedures p where p.object_name='VH_TEST_PKG' and p.object_type='PACKAGE' and p.procedure_name is not null order by p.subprogram_id
+aggregate='NO'
+pipelined='NO'
+
+
+select * from all_arguments aa where aa.package_name='VH_TEST_PKG'
+order by aa.SUBPROGRAM_ID,  aa.in_out, aa.POSITION
+
+navratova hodnota kdyz ARGUMENT_NAME is null and DATA_LEVEL = 0
+argument kdyz ARGUMENT_NAME is not null and DATA_LEVEL = 0
+ignorovat kdyz DATA_LEVEL > 0
+
+DATA_TYPE
+'OPAQUE/XMLTYPE' xmltype
+'OBJECT' a 'TABLE'  - typ dotahnout pres all_types
+'NUMBER'
+'VARCHAR2'
+'DATE'
+'CLOB'
+'BLOB'
+'PL/SQL TABLE' ??? asi nepodporovat
+
+
+https://docs.oracle.com/cd/A97335_02/apps.102/a83724/basic3.htm
+
+select DATA_TYPE, count(*) from all_arguments aa group by DATA_TYPE
+

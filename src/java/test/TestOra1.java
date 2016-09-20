@@ -165,6 +165,7 @@ public class TestOra1 {
 		
 		
 		
+		
 		//indexovana plsql tabulka
 		System.out.println("zacatek p10");
 		CallableStatement p10 = con.prepareCall("{call vh_test_pkg.p10(?,?)}");
